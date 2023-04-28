@@ -16,7 +16,7 @@ const ROUTES = [
 export default function Footer() {
   return (
     <Wrapper className={'bg-black'}>
-      <Container className={'grid grid-cols-1 gap-8 py-10  px-2 text-white md:grid-cols-3'}>
+      <Container className={'grid grid-cols-1 gap-8 px-2  pb-10 text-white md:grid-cols-3'}>
         FOOTER
       </Container>
     </Wrapper>

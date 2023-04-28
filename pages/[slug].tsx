@@ -22,7 +22,9 @@ export default function DynamicPage({ page }: PageProps) {
   return (
     <Layout>
       <SEO title={page.meta_title} description={page.meta_description} />
-      <Slicer sections={page.sections} components={COMPONENTS} />
+      <div className={'mt-48 mb-32'}>
+        <Slicer sections={page.sections} components={COMPONENTS} />
+      </div>
     </Layout>
   )
 }

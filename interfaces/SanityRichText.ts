@@ -1,2 +1,2 @@
-type SanityRichText = any
+type SanityRichText = any[]
 export default SanityRichText

@@ -15,8 +15,8 @@ export default function Header() {
     },
   ]
   return (
-    <Wrapper className={'bg-p2 sticky top-0 z-40 shadow-md'}>
-      <Container className={'relative flex w-full items-center gap-6 py-5 px-2'}>
+    <Wrapper className={'sticky top-0 z-40 bg-black shadow-md'}>
+      <Container className={'relative flex w-full items-center gap-6 px-2 pt-5'}>
         <Sidebar currentPath={currentPath} ROUTES={ROUTES} />
         HEADER
       </Container>
