@@ -10,9 +10,12 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.0.2",
     "next": "13.2.4",
+    "next-sanity": "^4.1.8",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9"
   },
   "devDependencies": {
     "@types/node": "18.15.5",
