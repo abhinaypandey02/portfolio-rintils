@@ -3,16 +3,19 @@ import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 
 import '../styles/globals.css'
-const Theme = createContext<['dark' | 'light' | undefined, Dispatch<'dark' | 'light' | undefined>]>(
-  []
-)
+const Theme = createContext<
+  [
+    'dark' | 'light' | undefined,
+    Dispatch<(o: 'dark' | 'light' | undefined) => 'dark' | 'light' | undefined>
+  ]
+>([undefined, () => undefined])
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({ subsets: ['latin'] })
 export function useTheme() {
   const theme = useContext(Theme)
   return {
     theme: theme[0],
-    switchTheme: () => theme[1]((o) => (o === 'dark' ? 'light' : 'dark')),
+    switchTheme: () => theme[1]((o: any) => (o === 'dark' ? 'light' : 'dark')),
   }
 }
 function MyApp({ Component, pageProps }: AppProps) {

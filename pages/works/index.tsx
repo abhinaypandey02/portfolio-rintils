@@ -10,7 +10,7 @@ import Layout from '../../components/organisms/Layout'
 import SanityPage from '../../interfaces/SanityPage'
 import SanitySiteSettings from '../../interfaces/SanitySiteSettings'
 import SanityWork from '../../interfaces/SanityWork'
-import client from '../../sanity/client'
+import client, { urlFor } from '../../sanity/client'
 
 interface PageProps {
   works: SanityWork[]
@@ -18,9 +18,15 @@ interface PageProps {
 }
 export default function Works(props: PageProps) {
   const [toShow, setToShow] = useState(9)
+  const imageURL = urlFor(props.site_settings.works_seo.meta_image)
+
   return (
     <Layout site_settings={props.site_settings}>
-      <SEO title={'Works'} />
+      <SEO
+        image={props.site_settings.works_seo.meta_image && imageURL}
+        title={props.site_settings.works_seo.meta_title}
+        description={props.site_settings.works_seo.meta_description}
+      />
       <Wrapper className={'mt-48 mb-32'}>
         <Container>
           <h1 className={'mb-8 text-h1'}>Works</h1>
@@ -29,7 +35,7 @@ export default function Works(props: PageProps) {
               <WorkCard key={work.slug.current} work={work} />
             ))}
           </div>
-          {toShow < props.works && (
+          {toShow < props.works.length && (
             <div className={'mt-12 text-center'}>
               <span className={'cursor-pointer'} onClick={() => setToShow((o) => o + 6)}>
                 Load More +

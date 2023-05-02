@@ -7,7 +7,7 @@ import Layout from '../../components/organisms/Layout'
 import RichText from '../../components/organisms/RichText'
 import SanitySiteSettings from '../../interfaces/SanitySiteSettings'
 import SanityWork from '../../interfaces/SanityWork'
-import client from '../../sanity/client'
+import client, { urlFor } from '../../sanity/client'
 import { SanityImage } from '../../sanity/components'
 interface PageProps {
   work?: SanityWork
@@ -17,9 +17,14 @@ export default function SingleWork(props: PageProps) {
   if (!props.work || !props.site_settings) return
   const workDate = new Date(props.work.date)
   const workYear = workDate.getFullYear()
+  const imageURL = urlFor(props.work.featured_image)
   return (
     <Layout site_settings={props.site_settings}>
-      <SEO title={props.work.title} />
+      <SEO
+        image={props.work.featured_image && imageURL}
+        description={props.work.title}
+        title={props.work.title}
+      />
       <Wrapper className={'mt-16 mb-24'}>
         <Container>
           <h1 className={'mb-8 text-h1'}>{props.work.title}</h1>

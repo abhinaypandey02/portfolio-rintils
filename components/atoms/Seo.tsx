@@ -16,14 +16,15 @@ export default function SEO({
   description?: string
   image?: string
 }) {
-  const TITLE = (title || '') + (title ? ' | ' : '') + siteMetadata.title
+  const TITLE = title || siteMetadata.title
+  const DESCRIPTION = description || siteMetadata.description
   return (
     <Head>
       <title>{TITLE}</title>
-      <meta name="description" content={siteMetadata.description} />
+      <meta name="description" content={DESCRIPTION} />
       <meta name="keywords" content={siteMetadata.keywords} />
       <meta property="og:site_name" content={TITLE} />
-      <meta property="og:description" content={siteMetadata.description} />
+      <meta property="og:description" content={DESCRIPTION} />
       <meta property="og:title" content={TITLE} />
       <meta
         property="og:image"
@@ -32,7 +33,7 @@ export default function SEO({
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={TITLE} />
-      <meta name="twitter:description" content={siteMetadata.description} />
+      <meta name="twitter:description" content={DESCRIPTION} />
       <meta name="twitter:image" content={image || siteMetadata.image} />
     </Head>
   )

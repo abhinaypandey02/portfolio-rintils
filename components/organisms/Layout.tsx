@@ -11,7 +11,7 @@ export default function Layout({
   site_settings,
 }: PropsWithChildren<{ className?: string; site_settings: SanitySiteSettings }>) {
   return (
-    <main className={className}>
+    <main className={className + ' relative z-10'}>
       <Header links={site_settings.header_links} />
       <div>{children}</div>
       <Footer links={site_settings.footer_links} />

@@ -20,11 +20,13 @@ export default function Header({ links }: { links: SanityLink[] }) {
     },
   ]
   return (
-    <Wrapper className={'z-40 '}>
+    <Wrapper className={' '}>
       <Container className={'relative flex w-full items-center gap-6 px-2 pt-5'}>
         <Sidebar currentPath={currentPath} ROUTES={ROUTES} />
         <div className={'mr-auto'}>
-          <div className={'font-semibold'}>Alex Wastell</div>
+          <div className={'font-semibold'}>
+            <Link href={'/'}>Alex Wastell</Link>
+          </div>
           <Link className={'text-grey'} href={'/works'}>
             Selected Works
           </Link>
