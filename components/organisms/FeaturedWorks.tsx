@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import SanityFeaturedWorks from '../../interfaces/SanityFeaturedWorks'
 import Container from '../atoms/Container'
+import SiteLink from '../atoms/SiteLink'
 import Wrapper from '../atoms/Wrapper'
 import WorkCard from '../molecules/WorkCard'
 
@@ -21,9 +22,7 @@ export default function FeaturedWorks(props: SanityFeaturedWorks) {
           ))}
         </div>
         <div className={'mt-12 text-center'}>
-          <Link href={'/works'} className={'text-center'}>
-            See all work
-          </Link>
+          <SiteLink href={'/works'} title={'See all work'} className={'text-center'} />
         </div>
       </Container>
     </Wrapper>

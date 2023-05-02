@@ -8,16 +8,18 @@ import Wrapper from '../../components/atoms/Wrapper'
 import WorkCard from '../../components/molecules/WorkCard'
 import Layout from '../../components/organisms/Layout'
 import SanityPage from '../../interfaces/SanityPage'
+import SanitySiteSettings from '../../interfaces/SanitySiteSettings'
 import SanityWork from '../../interfaces/SanityWork'
 import client from '../../sanity/client'
 
 interface PageProps {
   works: SanityWork[]
+  site_settings: SanitySiteSettings
 }
 export default function Works(props: PageProps) {
   const [toShow, setToShow] = useState(9)
   return (
-    <Layout>
+    <Layout site_settings={props.site_settings}>
       <SEO title={'Works'} />
       <Wrapper className={'mt-48 mb-32'}>
         <Container>
@@ -41,7 +43,9 @@ export default function Works(props: PageProps) {
 }
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const works: SanityWork[] = await client.fetch(`*[_type == "work"]`)
+  const site_settings = await client.fetch('*[_id == "site_settings"]')
+
   return {
-    props: { works },
+    props: { works, site_settings: site_settings && site_settings.length > 0 && site_settings[0] },
   }
 }

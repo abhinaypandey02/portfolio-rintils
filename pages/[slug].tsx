@@ -7,10 +7,12 @@ import Form from '../components/organisms/Form'
 import Layout from '../components/organisms/Layout'
 import RichText from '../components/organisms/RichText'
 import SanityPage from '../interfaces/SanityPage'
+import SanitySiteSettings from '../interfaces/SanitySiteSettings'
 import client from '../sanity/client'
 import Slicer from '../sanity/slicer'
 interface PageProps {
   page: SanityPage
+  site_settings: SanitySiteSettings
 }
 const COMPONENTS = {
   featured_works: FeaturedWorks,
@@ -18,9 +20,9 @@ const COMPONENTS = {
   form: Form,
   rich_text: RichText,
 }
-export default function DynamicPage({ page }: PageProps) {
+export default function DynamicPage({ page, site_settings }: PageProps) {
   return (
-    <Layout>
+    <Layout site_settings={site_settings}>
       <SEO title={page.meta_title} description={page.meta_description} />
       <div className={'mt-48 mb-32'}>
         <Slicer sections={page.sections} components={COMPONENTS} />
@@ -48,9 +50,11 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params, locale
   }
 }`
   )
+  const site_settings = await client.fetch('*[_id == "site_settings"]')
   return {
     props: {
       page: pages && pages.length > 0 && pages[0],
+      site_settings: site_settings && site_settings.length > 0 && site_settings[0],
     },
   }
 }

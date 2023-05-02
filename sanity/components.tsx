@@ -7,7 +7,7 @@ import SanityPhoto from '../interfaces/SanityPhoto'
 import { urlFor } from './client'
 const pattern = /^image-([a-f\d]+)-(\d+x\d+)-(\w+)$/
 
-const decodeAssetId = (id: any) => {
+export const decodeAssetId = (id: any) => {
   const [, assetId, dimensions, format] = pattern.exec(id) || []
   const [width, height] = dimensions.split('x').map((v: any) => parseInt(v, 10))
 
